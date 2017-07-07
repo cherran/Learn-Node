@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div.wrapper.ooonooo
+    h1.hello Hello #{name}!
+    span#yo -
+    div.jupiter#jupiter-photo
+      img(alt="Jupiter" src="https://www.sciencenews.org/sites/default/files/2017/05/main/articles/052517_AY_jupiter_main_FREE.jpg")
+
+  p 
+    | Hello 
+    - const planetU = planet.toUpperCase();
+    em Welcome to #{planetU}
+    br
+    h2 Son las #{h.moment().format("hh:mm:ss a")}
