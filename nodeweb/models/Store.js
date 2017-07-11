@@ -17,16 +17,37 @@ const storeSchema = new mongoose.Schema({
     trim: true,
   },
   tags: [String],
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
+  location: {
+    type: {
+      type: String,
+      default: 'Point',
+    },
+    coordinates: [{
+      type: Number,
+      required: 'You must supply coordinates',
+    }],
+    address: {
+      type: String,
+      required: 'You must provide and address!',
+    },
+  },
 });
 
-storeSchema.pre('save', (next) => {
+storeSchema.pre('save', function (next) {
   if (!this.isModified('name')) {
     next(); // skip it
-    return; // stop this from running
+    return; // stop this function from running
   }
   this.slug = slug(this.name);
   next();
-  // @TODO make more resiliant so slugs are unique
+  // TODO make more resiliant so slugs are unique
 });
+
+module.exports = mongoose.model('Store', storeSchema);
+
 
 module.exports = mongoose.model('Store', storeSchema);
