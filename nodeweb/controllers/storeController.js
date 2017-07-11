@@ -1,11 +1,13 @@
-exports.myMiddleware = (req, res, next) => {
-  req.name = 'Carlos';
-  res.cookie('name', 'Carlos manda');
-  next();
-};
-
-// everything you put in the exports variable is imported when the module is
+// everything you put in the exports variable is imported when the module required
 exports.homePage = (req, res) => {
   console.log(req.name);
   res.render('index');
+};
+
+exports.addStore = (req, res) => {
+  res.render('editStore', { title: 'Add Store' });
+};
+
+exports.createStore = (req, res) => {
+  res.json(req.body);
 };

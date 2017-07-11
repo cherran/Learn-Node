@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 const storeController = require('../controllers/storeController');
 
-// Do work here
 // (req, res) => {callback function}
 // router.get('/', (req, res) => {
 //   // res.json('Hey! It works!');
@@ -14,6 +13,8 @@ const storeController = require('../controllers/storeController');
 //   });
 // });
 
+// Do work here
+
 // getting parameters from the route
 router.get('/reverse/:name', (req, res) => {
   // using those paremeters (ES6 sintax for the array?)
@@ -22,6 +23,9 @@ router.get('/reverse/:name', (req, res) => {
 });
 
 // main route --> everything is done in the controller
-router.get('/', storeController.myMiddleware, storeController.homePage);
+router.get('/', storeController.homePage);
+
+router.get('/add', storeController.addStore);
+router.post('/add', storeController.createStore);
 
 module.exports = router;
